@@ -1,4 +1,16 @@
 const usersRow = document.querySelector('.users__row');
+const loader = document.querySelector('.loader');
+
+loader.innerHTML = `
+    <div class="loader">
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__ball"></div>
+    </div>
+`
 
 function getUser({id, name, username, email, phone, website, company}){
     return `
@@ -22,6 +34,7 @@ async function getUsers(){
     res.map(el =>{
         usersRow.innerHTML += getUser(el)
     })
+    loader.innerHTML = ""
 }
 
 getUsers();

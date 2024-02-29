@@ -1,7 +1,18 @@
 const todosRow = document.querySelector('.todos__row');
 let query = new URLSearchParams(location.search);
 let userId = query.get('userId');
-console.log(userId);
+const loader = document.querySelector('.loader');
+
+loader.innerHTML = `
+    <div class="loader">
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__ball"></div>
+    </div>
+`
 
 function getTodos({userId, title, completed, id}){
     return `
@@ -19,6 +30,7 @@ async function getTodo(){
     res.map(el =>{
         todosRow.innerHTML += getTodos(el)
     })
+    loader.innerHTML = '';
 
 }
 getTodo();

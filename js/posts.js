@@ -1,6 +1,18 @@
 const postsRow = document.querySelector('.posts__row');
 let query = new URLSearchParams(location.search)
 let userId = query.get('userId');
+const loader = document.querySelector('.loader');
+
+loader.innerHTML = `
+    <div class="loader">
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__ball"></div>
+    </div>
+`
 
 function getPost({userId, id, title, body}){
     return `
@@ -19,5 +31,6 @@ async function getPosts(){
     res.forEach(element => {
         postsRow.innerHTML += getPost(element) 
     });
+    loader.innerHTML = ''
 }
 getPosts()

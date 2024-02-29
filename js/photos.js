@@ -2,6 +2,18 @@ const albumsRow = document.querySelector('.photos__row');
 
 let query = new URLSearchParams(location.search);
 let albumId = query.get('albumId');
+const loader = document.querySelector('.loader');
+
+loader.innerHTML = `
+    <div class="loader">
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__ball"></div>
+    </div>
+`
 
 function getPhoto({albumId, id, title, url, thumbnailUrl}){
     return `
@@ -20,5 +32,6 @@ async function getPhotos(){
     res.map(el =>{
         albumsRow.innerHTML += getPhoto(el)
     })
+    loader.innerHTML =''
 }
 getPhotos();
